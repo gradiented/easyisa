@@ -7,14 +7,14 @@ import (
 	"github.com/99designs/gqlgen/handler"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	graphql "github.com/gradiented/easyisa/graphql"
+	easyapi "github.com/gradiented/easyisa/easyapi"
 )
 
 func graphqlHandler() gin.HandlerFunc {
-	c := graphql.Config{Resolvers: &graphql.Resolver{}}
-	c.Directives.HasRole = graphql.Auth_Directive
+	c := easyapi.Config{Resolvers: &easyapi.Resolver{}}
+	c.Directives.HasRole = easyapi.Auth_Directive
 
-	h := handler.GraphQL(graphql.NewExecutableSchema(c))
+	h := handler.GraphQL(easyapi.NewExecutableSchema(c))
 	return func(c *gin.Context) {
 		h.ServeHTTP(c.Writer, c.Request)
 	}

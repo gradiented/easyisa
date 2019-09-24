@@ -7,12 +7,15 @@ schema:
   - ../prisma/schema.graphql
 exec:
   filename: generated.go
+  package: easyapi
 models:
   Post:
     model: github.com/gradiented/easyisa/prisma.Post
 model:
   filename: models_gen.go
+   package: easyapi
 resolver:
   filename: resolver.go
+   package: easyapi
   type: Resolver
 autobind: []

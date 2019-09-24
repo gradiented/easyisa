@@ -1,4 +1,4 @@
-package graphql
+package easyapi
 
 import (
 	"context"

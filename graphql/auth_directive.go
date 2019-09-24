@@ -1,4 +1,4 @@
-package graphql
+package easyapi
 
 import (
 	"context"
@@ -10,6 +10,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/dgrijalva/jwt-go"
+	"github.com/vektah/gqlparser/gqlerror"
 )
 
 type JSONWebKeys struct {
@@ -57,16 +58,26 @@ func getPemCert(token *jwt.Token) (string, error) {
 
 var Auth_Directive = func(ctx context.Context, obj interface{}, next graphql.Resolver, role Role) (interface{}, error) {
 	Itoken := ctx.Value("token")
+	if Itoken == "" {
+		graphql.AddError(ctx, &gqlerror.Error{
+			Message: "403 Unauthorized",
+		})
+		return next(ctx)
+	}
+
 	splitToken := strings.Split(Itoken.(string), "Bearer")
+
 	claims := jwt.MapClaims{}
 	token, err := jwt.ParseWithClaims(splitToken[1], claims, func(token *jwt.Token) (interface{}, error) {
 		cert, nil := getPemCert(token)
 		return []byte(cert), nil
 	})
-	if err == nil {
-		fmt.Println("valid token", token, claims)
+	if err != nil {
+		graphql.AddError(ctx, &gqlerror.Error{
+			Message: "403 Unauthorized",
+		})
 	} else {
-		fmt.Println("invalid token", err)
+		fmt.Println("Got token:", token, "With claims:", claims)
 	}
 	return next(ctx)
 }
