@@ -7,6 +7,7 @@ import (
 	"github.com/99designs/gqlgen/handler"
 	auth0 "github.com/auth0-community/go-auth0"
 	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	easyapi "github.com/gradiented/easyisa/pkg/graphql"
 	"gopkg.in/square/go-jose.v2"
@@ -72,8 +73,10 @@ func Start() {
 		MaxAge:           12 * time.Hour,
 	}))
 
+	r.Use(static.Serve("/", static.LocalFile("./web/build", true)))
 	r.Use(authMiddleWare())
 	r.POST("/query", graphqlHandler())
-	r.GET("/", playgroundHandler())
+	r.GET("/easyapi", playgroundHandler())
+
 	r.Run("localhost:8080")
 }
