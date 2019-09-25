@@ -1,0 +1,18 @@
+# .gqlgen.yml example
+#
+# Refer to https://gqlgen.com/config/
+# for detailed .gqlgen.yml documentation.
+
+schema:
+  - ./pkg/prisma/schema.graphql
+exec:
+  filename: ./pkg/graphql/generated.go
+models:
+  Post:
+    model: github.com/gradiented/easyisa/pkg/prisma.Post
+model:
+  filename: ./pkg/graphql/models_gen.go
+resolver:
+  filename: ./pkg/graphql/resolver.go
+  type: Resolver
+autobind: []
