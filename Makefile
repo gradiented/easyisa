@@ -22,7 +22,7 @@ default: dependencies test
 
 # clean up
 clean:
-	go clean -modcache
+	go clean
 
 # run formatting tool and build
 build: dependencies clean
