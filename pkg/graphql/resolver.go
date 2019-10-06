@@ -6,9 +6,9 @@ import (
 	"github.com/gradiented/easyisa/pkg/prisma"
 )
 
-// THIS CODE IS A STARTING POINT ONLY. IT WILL NOT BE UPDATED WITH SCHEMA CHANGES.
-
-type Resolver struct{}
+type Resolver struct {
+	Prisma *prisma.Client
+}
 
 func (r *Resolver) Mutation() MutationResolver {
 	return &mutationResolver{r}

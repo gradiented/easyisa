@@ -15,7 +15,7 @@ input NewPost {
 }
 
 type Query {
-  posts: [Post!]! @hasRole(role: USER)
+  posts: [Post!]!
 }
 
 type Mutation {

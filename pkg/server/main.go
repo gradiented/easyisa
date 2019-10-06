@@ -1,14 +1,17 @@
 package server
 
 import (
+	"fmt"
 	"log"
 	"time"
 
 	"github.com/99designs/gqlgen/handler"
 	auth0 "github.com/auth0-community/go-auth0"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
+	workflows "github.com/gradiented/easyisa/cmd/cadence"
 	easyapi "github.com/gradiented/easyisa/pkg/graphql"
 	"gopkg.in/square/go-jose.v2"
 )
@@ -21,6 +24,11 @@ func graphqlHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		h.ServeHTTP(c.Writer, c.Request)
 	}
+}
+
+type CustomClaims struct {
+	Scope string `json:"scope"`
+	jwt.StandardClaims
 }
 
 func authMiddleWare() gin.HandlerFunc {
@@ -48,6 +56,8 @@ func authMiddleWare() gin.HandlerFunc {
 			log.Println("Invalid claims:", err)
 		}
 
+		fmt.Println(claims)
+
 		c.Next()
 	})
 }
@@ -62,6 +72,9 @@ func playgroundHandler() gin.HandlerFunc {
 }
 
 func Start() {
+
+	workflows.StartGreetWorkflow()
+
 	r := gin.Default()
 
 	r.Use(cors.New(cors.Config{

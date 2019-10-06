@@ -8,7 +8,7 @@
 #
 
 # binary name to kill/restart
-PROG = server
+PROG_SERVER = server
 
 # targets not associated with files
 .PHONY: dependencies default build test coverage clean kill restart serve
@@ -22,6 +22,7 @@ default: dependencies test
 
 # clean up
 clean:
+	go fmt ./cmd/server.go
 	go clean -modcache
 
 # run formatting tool and build
@@ -39,12 +40,12 @@ coverage: test
 
 # attempt to kill running server
 kill:
-	-@killall -9 $(PROG) 2>/dev/null || true
+	-@killall -9 $(PROG_SERVER) 2>/dev/null || true
 
 # attempt to build and start server
 restart:
 	@make kill
-	@make build; (if [ "$$?" -eq 0 ]; then (./bin/${PROG} &); fi)
+	@make build; (if [ "$$?" -eq 0 ]; then (./bin/${PROG_SERVER} &); fi)
 
 # watch .go files for changes then recompile & try to start server
 # will also kill server after ctrl+c
