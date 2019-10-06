@@ -1,0 +1,5 @@
+{
+  "domain": "easy-isa.auth0.com",
+  "clientId": "C5DwmmFoqY06ABdThFompoM92g9pzfhE",
+  "audience": "http://localhost:3000/graphql"
+}

@@ -9,3 +9,6 @@
 # Testing
 *.test
 *.tmp
+
+node_modules
+bin
