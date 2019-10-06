@@ -14,8 +14,6 @@ func init() {
 	workflow.Register(HelloCadenceWorkflow)
 }
 
-// GreetingActivity is a sample Cadence activity function that takes one parameter and
-// returns a string containing the parameter value.
 func GreetingActivity(ctx context.Context) (string, error) {
 	activity.GetLogger(ctx).Info("GreetingActivity called.")
 	return "Oh hi. :)", nil
