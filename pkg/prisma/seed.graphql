@@ -1,0 +1,5 @@
+mutation {
+  createPost(data: { text: "Data from  seed" }) {
+    id
+  }
+}

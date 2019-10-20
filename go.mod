@@ -15,6 +15,7 @@ require (
 	github.com/google/uuid v1.0.0
 	github.com/machinebox/graphql v0.2.2
 	github.com/mitchellh/mapstructure v1.1.2 // indirect
+	github.com/opentracing/opentracing-go v1.1.0 // indirect
 	github.com/pborman/uuid v1.2.0 // indirect
 	github.com/prisma/prisma-client-lib-go v0.0.0-20181017161110-68a1f9908416
 	github.com/prometheus/client_golang v1.1.0 // indirect
@@ -31,6 +32,7 @@ require (
 	go.uber.org/thriftrw v1.20.1 // indirect
 	go.uber.org/yarpc v1.41.0
 	go.uber.org/zap v1.10.0
+	golang.org/x/net v0.0.0-20191014212845-da9a3fd4c582 // indirect
 	golang.org/x/sys v0.0.0-20191005200804-aed5e4c7ecf9 // indirect
 	golang.org/x/time v0.0.0-20190921001708-c4c64cad1fd0 // indirect
 	gopkg.in/square/go-jose.v2 v2.1.7

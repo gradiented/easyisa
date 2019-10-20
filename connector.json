@@ -1,0 +1,17 @@
+{
+  "name": "prisma-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "host.docker.internal",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "postgres",
+    "database.dbname": "prisma",
+    "database.server.name": "prisma",
+    "database.whitelist": "prisma",
+    "schema.whitelist": "default$default",
+    "database.history.kafka.bootstrap.servers": "easyisa_kafka_1:9092",
+    "database.history.kafka.topic": "schema-changes.prisma"
+  }
+}

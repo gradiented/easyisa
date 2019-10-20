@@ -30,6 +30,7 @@ func StartGreetWorkflow() {
 		TaskList:                        "easyisa-tasks",
 		ExecutionStartToCloseTimeout:    time.Minute,
 		DecisionTaskStartToCloseTimeout: time.Minute,
+		WorkflowIDReusePolicy:           1,
 	}
 	h.StartWorkflow(workflowOptions, workflows.HelloCadenceWorkflow)
 }

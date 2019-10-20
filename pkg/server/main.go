@@ -91,5 +91,5 @@ func Start() {
 	r.POST("/query", graphqlHandler())
 	r.GET("/easyapi", playgroundHandler())
 
-	r.Run("localhost:8080")
+	r.Run("localhost:8888")
 }
